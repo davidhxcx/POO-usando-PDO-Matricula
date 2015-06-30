@@ -1,6 +1,6 @@
 <?php
 
-require_once 'C:\xampp\htdocs\escola2\classes\crud.php';
+require_once 'C:\xampp\htdocs\escola\classes\crud.php';
 
 class Curso extends Crud{
     
@@ -34,12 +34,12 @@ class Curso extends Crud{
     }
     
     public function update($id){
-        $sql = "UPDATE $this->table SET = nome = :nome, duracao = :duracao, periodo = :periodo WHERE id = :id";
+        $sql = "UPDATE $this->table SET nome = :nome, duracao = :duracao, periodo = :periodo WHERE id_curso = :id";
         $stmt = DB::prepare($sql);
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':duracao', $this->duracao);
         $stmt->bindParam(':periodo', $this->periodo);
-        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':id', $id);
         return $stmt->execute();
     
     

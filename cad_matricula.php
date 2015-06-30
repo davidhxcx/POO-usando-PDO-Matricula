@@ -1,3 +1,4 @@
+
 <?php
 		require('page.php');
 		$homepage = new Page();
@@ -18,22 +19,76 @@
 
 		<body id="background">
 			<?php
-				echo	$homepage -> DisplayHeader(); //cabeçalho
+				echo	$homepage -> DisplayHeader();//cabeçalho
 				echo	$homepage -> DisplayMenu(); //Menu
 			?>
 			<!--nucleo principal  da pagina +++++++++++++++++++++++-->
 				
-			<?php
+			<div  id="fundo">
+	
 			
-				echo	$homepage -> DisplayIndex();//Carrega o centro da pagina inicial (index)
-			?>	
-								
-			<!--FIM do nucleo principal  da pagina +++++++++++++++++++++++-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<?php
+        function __autoload($class_name){
+            require_once 'classes/' . $class_name . '.php';
+        }
 
+?>
+<!DOCTYPE html>
+<html>
+
+<body>
+    
+    
+<div>
+	<div>
+		<div id="cad_curso_titulo">       <!-- TITULO -->
+				Cadastro de Matricula
+			</div>
+			
+			</br></br></br>
+		
+		</div>
+	</div>
+</div>
+
+</body>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				
+			
+			
+			
+					
 			<?php
 				echo	$homepage-> DisplayFooter();//(Rodapé)
 			?>
-
 		
 		</body>	
 	<!--FIM do corpo principal-->

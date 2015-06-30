@@ -1,6 +1,6 @@
 <?php
 
-require_once 'C:\xampp\htdocs\escola2\classes\crud.php';
+require_once 'C:\xampp\htdocs\escola\classes\crud.php';
 
 class Professor extends Crud{
     
@@ -39,13 +39,13 @@ class Professor extends Crud{
     }
     
     public function update($id){
-        $sql = "UPDATE $this->table SET = nome = :nome, dataNasc = :nascimento, endereco = :endereco, email = :email WHERE id = :id";
+        $sql = "UPDATE $this->table SET nome = :nome, dataNasc = :nascimento, endereco = :endereco, email = :email WHERE id_professor = :id";
         $stmt = DB::prepare($sql);
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':nascimento', $this->nascimento);
         $stmt->bindParam(':endereco', $this->endereco);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':id', $id);
         return $stmt->execute();
     
     

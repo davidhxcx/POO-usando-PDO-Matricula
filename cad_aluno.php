@@ -40,13 +40,12 @@
 <head>
 	<title>Sistema Escola</title>
 	<meta charset='UTF-8'>
-	<link href="../assets/css/styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     
     <?php
         
-        $professor = new Professor();
+        $alunos = new Alunos();
         
         if(isset($_POST['cadastrar'])):
         
@@ -67,20 +66,20 @@ if($nome == ''){
     }
 } 
 
-    $professor->setNome($nome);
-    $professor->setNascimento($nascimento); 
-    $professor->setEndereco($endereco);
-    $professor->setEmail($email);
+    $alunos->setNome($nome);
+    $alunos->setNascimento($nascimento); 
+    $alunos->setEndereco($endereco);
+    $alunos->setEmail($email);
 
-if($professor->insert()){
+if($alunos->insert()){
     echo "Inserido com Sucesso!";
 }
 
 endif;
 
-    ?>
+?>
     
-     <?php 
+ <?php 
     if(isset($_POST['atualizar'])):
        
        $id = $_POST['id'];
@@ -89,12 +88,12 @@ endif;
        $endereco = $_POST['endereco'];
        $email = $_POST['email'];
        
-       $professor->setNome($nome);
-       $professor->setNascimento($nascimento); 
-       $professor->setEndereco($endereco);
-       $professor->setEmail($email);
+       $alunos->setNome($nome);
+       $alunos->setNascimento($nascimento); 
+       $alunos->setEndereco($endereco);
+       $alunos->setEmail($email);
        
-       if($professor->update($id)){
+       if($alunos->update($id)){
             echo "Atualizado com Sucesso!";
        }
        
@@ -107,7 +106,7 @@ endif;
         if(isset($_GET['acao']) && $_GET['acao'] == 'deletar'):
             
             $id = (int)$_GET['id'];
-            if($professor->delete2($id)){
+            if($alunos->delete($id)){
                   echo "Usuario Excluido com Sucesso!";
             }
 
@@ -120,13 +119,13 @@ endif;
 if(isset($_GET['acao']) && $_GET['acao'] == 'editar'){
     
         $id = (int)$_GET['id'];
-        $resultado = $professor->find2($id);    
+        $resultado = $alunos->find($id);    
     ?>
     
-<div>
-	<div class="container-cadastro">
+<div>    
+<div class="container-cadastro">
 		<div id="cad_curso_titulo">       <!-- TITULO -->
-				Atualizar Professor
+				Atualizar Aluno
 			</div>
 			<div id="cad_curso">
    <form method="POST" action="">
@@ -134,18 +133,16 @@ if(isset($_GET['acao']) && $_GET['acao'] == 'editar'){
             <input class="input-type" type="text" name="nascimento" value="<?php echo $resultado->dataNasc; ?>" placeholder="Data de Nascimento"></br></p>
             <input class="input-type" type="text" name="endereco" value="<?php echo $resultado->endereco; ?>" placeholder="Endereço">
 			<input class="input-type" type="text" name="email" value="<?php echo $resultado->email; ?>" placeholder="Email"></br></p>
-            <input type="hidden" name="id" value="<?php echo $resultado->id_professor; ?>">
+            <input type="hidden" name="id" value="<?php echo $resultado->id_aluno; ?>">
 			<button type="submit" name="atualizar" class="entrar-button">Atualizar</button>
 		</form>
-    </br></br></br>
-
+    </br>
 <?php }else{ ?>
-    
-    
-<div>
-	<div class="container-cadastro">
+
+<div>    
+<div class="container-cadastro">
 		<div id="cad_curso_titulo">       <!-- TITULO -->
-				Cadastro de Professor
+				Cadastrar Aluno
 			</div>
 			<div id="cad_curso">
 		<form method="POST" action="">
@@ -154,10 +151,10 @@ if(isset($_GET['acao']) && $_GET['acao'] == 'editar'){
             <input class="input-type" type="text" name="endereco" placeholder="Endereço">
 			<input class="input-type" type="text" name="email" placeholder="Email"></br></p>
 			<button type="submit" name="cadastrar" class="entrar-button">Cadastrar</button>
-		</form>	
-    </br></br></br>
-
+		</form>
+    </br>
 <?php } ?>
+
 
 <table id="cad_curso_tabela" >
     
@@ -168,27 +165,27 @@ if(isset($_GET['acao']) && $_GET['acao'] == 'editar'){
             <th>Data de Nascimento:</th>
             <th>Endere&ccedilo:</th>
             <th>Email:</th>
-            <th>A&ccediloes:</th> 
+            <th>A&ccediloes:</th>
         </tr>
     </thead>
 
-    <?php foreach($professor->findAll() as $key => $value): ?>
+    <?php foreach($alunos->findAll() as $key => $value): ?>
     
     <tbody>
         <tr>
-            <td><?php echo $value->id_professor; ?></td>
+            <td><?php echo $value->id_aluno; ?></td>
             <td><?php echo $value->nome; ?></td>
-        <td><?php echo $value->dataNasc; ?></td>
+            <td><?php echo $value->dataNasc; ?></td>
             <td><?php echo $value->endereco; ?></td>
             <td><?php echo $value->email; ?></td>
             <td>
-                <?php echo "<a href='cad_professor.php?acao=editar&id=" . $value->id_professor . "'><img title='Editar' src='img/alt.png'></a>"; ?>
-                <?php echo "<a href='cad_professor.php?acao=deletar&id=" . $value->id_professor . "' onClick='return confirm(\"Deseja realmente deletar?\")'><img title='Excluir' src='img/exc.png'></a>"; ?>
+                <?php echo "<a href='cad_aluno.php?acao=editar&id=" . $value->id_aluno . "'><img title='Editar' src='img/alt.png'></a>"; ?>
+                <?php echo "<a href='cad_aluno.php?acao=deletar&id=" . $value->id_aluno . "' onClick='return confirm(\"Deseja realmente deletar?\")'><img title='Excluir' src='img/exc.png'></a>"; ?>
             </td>
         </tr>
     </tbody>
     <?php endforeach; ?>
-</table>		
+</table>
 	</div>
 </div>
 </body>
